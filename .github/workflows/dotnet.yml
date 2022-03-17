@@ -23,6 +23,8 @@ jobs:
       run: dotnet build --no-restore -fl1 "/flp1:logFile=errors_build.txt;errorsonly" -fl2 "/flp2:logFile=warnings_build.txt;warningsonly"
     - name: Get Output Build
       run: | 
+        echo "$(cat errors_build.txt)"
+        echo "$(cat warnings_build.txt)"
         ERROS_BUILD=$(cat errors_build.txt)
         ERROS_BUILD="${ERROS_BUILD//'%'/'%25'}"
         ERROS_BUILD="${ERROS_BUILD//$'\n'/'%0A'}"
