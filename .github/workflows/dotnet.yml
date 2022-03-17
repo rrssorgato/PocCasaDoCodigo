@@ -23,8 +23,6 @@ jobs:
       run: dotnet build --no-restore -fl1 "/flp1:logFile=errors_build.txt;errorsonly" -fl2 "/flp2:logFile=warnings_build.txt;warningsonly"
     - name: Get Output Build
       run: | 
-        echo "$(cat errors_build.txt)"
-        echo "$(cat warnings_build.txt)"
         ERROS_BUILD=$(cat errors_build.txt)
         ERROS_BUILD="${ERROS_BUILD//'%'/'%25'}"
         ERROS_BUILD="${ERROS_BUILD//$'\n'/'%0A'}"
@@ -40,8 +38,8 @@ jobs:
       id: build_step
     - name: Echo Output Build
       run: |
-        echo "${{ steps.build_step.outputs.ERROS_BUILD }}"
-        echo "${{ steps.build_step.outputs.WARNINGS_BUILD }}"
+        echo "${{ steps.build_step.outputs.ErrBuild }}"
+        echo "${{ steps.build_step.outputs.WarnBuild }}"
     - name: Test
       run: dotnet test --no-build --verbosity normal
     - name: Send output
@@ -49,4 +47,4 @@ jobs:
       with:
         url: "https://pocstatic-api.herokuapp.com/StaticCode/build"
         method: "POST"
-        data: '{ "errors": "${{ steps.build_step.outputs.ERROS_BUILD }}", "warnings": "${{ steps.build_step.outputs.WARNINGS_BUILD }}" }'
+        data: '{ "errors": "${{ steps.build_step.outputs.ErrBuild }}", "warnings": "${{ steps.build_step.outputs.WarnBuild }}" }'
