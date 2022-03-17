@@ -33,4 +33,4 @@ jobs:
       with:
         url: "https://pocstatic-api.herokuapp.com/StaticCode/build"
         method: "POST"
-        data: '{ "result": "12341231" }'
+        data: '{ "result": "${{ steps.build_step.outputs.Test }}" }'
