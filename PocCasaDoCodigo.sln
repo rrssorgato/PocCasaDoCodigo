@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32210.238
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CasaDoCodigo.Api", "CasaDoCodigo.Api\CasaDoCodigo.Api.csproj", "{3785AE9A-41A1-45E2-958D-EC2BACF6FCB4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CasaDoCodigo.Tests", "CasaDoCodigo.Tests\CasaDoCodigo.Tests.csproj", "{EF148567-0561-4C3C-B2DD-CB4B02FB61FC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3785AE9A-41A1-45E2-958D-EC2BACF6FCB4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3785AE9A-41A1-45E2-958D-EC2BACF6FCB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3785AE9A-41A1-45E2-958D-EC2BACF6FCB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3785AE9A-41A1-45E2-958D-EC2BACF6FCB4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF148567-0561-4C3C-B2DD-CB4B02FB61FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF148567-0561-4C3C-B2DD-CB4B02FB61FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF148567-0561-4C3C-B2DD-CB4B02FB61FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF148567-0561-4C3C-B2DD-CB4B02FB61FC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2BCB2AE0-A003-4325-9331-DE0F42F8CB99}
+	EndGlobalSection
+EndGlobal
