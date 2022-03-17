@@ -22,7 +22,13 @@ jobs:
     - name: Build
       run: dotnet build --no-restore > output.txt
     - name: Get Output Build
-      run: echo "::set-output name=Test::$(cat output.txt | grep Warning)"
+      run: | 
+        MY_STRING=$(cat output.txt)
+      
+        MY_STRING="${MY_STRING//'%'/'%25'}"
+        MY_STRING="${MY_STRING//$'\n'/'%0A'}"
+        MY_STRING="${MY_STRING//$'\r'/'%0D'}"
+        echo "::set-output name=Test::$MY_STRING"
       id: build_step
     - name: Echo Output Build
       run: echo "${{ steps.build_step.outputs.Test }}"
