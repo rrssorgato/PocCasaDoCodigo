@@ -22,7 +22,7 @@ jobs:
     - name: Build
       run: dotnet build --no-restore > output.txt
     - name: Get Output Build
-      run: echo "::set-output name=Test::$(cat output.txt)"
+      run: echo "::set-output name=Test::$(cat output.txt | grep Warning)"
       id: build_step
     - name: Echo Output Build
       run: echo "${{ steps.build_step.outputs.Test }}"
