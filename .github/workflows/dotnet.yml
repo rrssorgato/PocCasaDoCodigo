@@ -36,12 +36,15 @@ jobs:
         echo "::set-output name=ErrBuild::$ERROS_BUILD"
         echo "::set-output name=WarnBuild::$WARNINGS_BUILD"
       id: build_step
+    
     - name: Echo Output Build
       run: |
         echo "${{ steps.build_step.outputs.ErrBuild }}"
         echo "${{ steps.build_step.outputs.WarnBuild }}"
+    
     - name: Test
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet test --no-build 2> test_erros.txt | egrep 'Failed!|Passed!' > teste_result.txt
+    
     - name: Send output
       uses: fjogeleit/http-request-action@v1
       with:
