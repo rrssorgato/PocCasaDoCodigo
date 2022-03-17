@@ -27,5 +27,5 @@ jobs:
     - name: Send output
       uses: distributhor/workflow-webhook@v1
       with:
-        url: "https://pocstatic-api.herokuapp.com/StaticCode/build"
-        json: '{ "result": "${steps.build_step.outputs.*}" }'
+        webhook_url: "https://pocstatic-api.herokuapp.com/StaticCode/build"
+        data: '{ "result": "${steps.build_step.outputs.*}" }'
