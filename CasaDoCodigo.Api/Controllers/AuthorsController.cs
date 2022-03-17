@@ -13,6 +13,7 @@ namespace CasaDoCodigo.Api.Controllers
             // Sua implementação aqui
             // ControllerBase.Created em caso de sucesso
             // ControllerBase.BadRequest em caso de falha
+            return Ok();
         }
     }
 }
