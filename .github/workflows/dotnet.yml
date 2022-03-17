@@ -21,5 +21,11 @@ jobs:
       run: dotnet restore
     - name: Build
       run: dotnet build --no-restore
+      id: build_step
     - name: Test
       run: dotnet test --no-build --verbosity normal
+    - name: Send output
+      uses: distributhor/workflow-webhook@v1
+      with:
+        url: "https://pocstatic-api.herokuapp.com/StaticCode/build"
+        json: '{ "result": "${steps.build_step.outputs.*}" }'
