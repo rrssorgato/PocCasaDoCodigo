@@ -20,18 +20,26 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
-      run: dotnet build --no-restore > output.txt
+      run: dotnet build --no-restore -fl1 "/flp1:logFile=errors_build.txt;errorsonly" -fl2 "/flp2:logFile=warnings_build.txt;warningsonly"
     - name: Get Output Build
       run: | 
-        MY_STRING=$(cat output.txt)
-      
-        MY_STRING="${MY_STRING//'%'/'%25'}"
-        MY_STRING="${MY_STRING//$'\n'/'%0A'}"
-        MY_STRING="${MY_STRING//$'\r'/'%0D'}"
-        echo "::set-output name=Test::$MY_STRING"
+        ERROS_BUILD=$(cat errors_build.txt)
+        ERROS_BUILD="${ERROS_BUILD//'%'/'%25'}"
+        ERROS_BUILD="${ERROS_BUILD//$'\n'/'%0A'}"
+        ERROS_BUILD="${ERROS_BUILD//$'\r'/'%0D'}"
+        
+        WARNINGS_BUILD=$(cat warnings_build.txt)
+        WARNINGS_BUILD="${WARNINGS_BUILD//'%'/'%25'}"
+        WARNINGS_BUILD="${WARNINGS_BUILD//$'\n'/'%0A'}"
+        WARNINGS_BUILD="${WARNINGS_BUILD//$'\r'/'%0D'}"
+  
+        echo "::set-output name=ErrBuild::$ERROS_BUILD"
+        echo "::set-output name=WarnBuild::$WARNINGS_BUILD"
       id: build_step
     - name: Echo Output Build
-      run: echo "${{ steps.build_step.outputs.Test }}"
+      run: |
+        echo "${{ steps.build_step.outputs.ERROS_BUILD }}"
+        echo "${{ steps.build_step.outputs.WARNINGS_BUILD }}"
     - name: Test
       run: dotnet test --no-build --verbosity normal
     - name: Send output
@@ -39,4 +47,4 @@ jobs:
       with:
         url: "https://pocstatic-api.herokuapp.com/StaticCode/build"
         method: "POST"
-        data: '{ "result": "${{ steps.build_step.outputs.Test }}" }'
+        data: '{ "errors": "${{ steps.build_step.outputs.ERROS_BUILD }}", "warnings": "${{ steps.build_step.outputs.WARNINGS_BUILD }}" }'
