@@ -25,7 +25,8 @@ jobs:
     - name: Test
       run: dotnet test --no-build --verbosity normal
     - name: Send output
-      uses: distributhor/workflow-webhook@v1
+      uses: fjogeleit/http-request-action@v1
       with:
-        webhook_url: "https://pocstatic-api.herokuapp.com/StaticCode/build"
+        url: "https://pocstatic-api.herokuapp.com/StaticCode/build"
+        method: "POST"
         data: '{ "result": "${steps.build_step.outputs.*}" }'
