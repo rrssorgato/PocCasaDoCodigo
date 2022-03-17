@@ -21,7 +21,11 @@ jobs:
       run: dotnet restore
     - name: Build
       run: dotnet build --no-restore > output.txt
+    - name: Get Output Build
+      run: echo "::set-output name=Test::$(cat output.txt)"
       id: build_step
+    - name: Echo Output Build
+      run: echo "${{ steps.build_step.outputs.Test }}"
     - name: Test
       run: dotnet test --no-build --verbosity normal
     - name: Send output
