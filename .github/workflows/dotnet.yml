@@ -90,4 +90,4 @@ jobs:
       with:
         url: "https://pocstatic-api.herokuapp.com/StaticCode/Horusec"
         method: "POST"
-        data: '{ "analysis": "${{ steps.horusec_step.outputs.Horusec }}" }'
+        data: '${{ steps.horusec_step.outputs.Horusec }}'
