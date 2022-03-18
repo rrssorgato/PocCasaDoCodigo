@@ -37,17 +37,35 @@ jobs:
         echo "::set-output name=WarnBuild::$WARNINGS_BUILD"
       id: build_step
     
-    - name: Echo Output Build
-      run: |
-        echo "${{ steps.build_step.outputs.ErrBuild }}"
-        echo "${{ steps.build_step.outputs.WarnBuild }}"
-    
     - name: Test
       run: dotnet test --no-build 2> test_erros.txt | egrep 'Failed!|Passed!' > teste_result.txt
+      id: test_step
+      
+    - name: Get Output Test
+      run: |
+        ERRORS_TEST=$(cat test_erros.txt)
+        ERRORS_TEST="${ERRORS_TEST//'%'/'%25'}"
+        ERRORS_TEST="${ERRORS_TEST//$'\n'/'%0A'}"
+        ERRORS_TEST="${ERRORS_TEST//$'\r'/'%0D'}"
+        
+        RESULT_TESTS=$(cat test_erros.txt)
+        RESULT_TESTS="${RESULT_TESTS//'%'/'%25'}"
+        RESULT_TESTS="${RESULT_TESTS//$'\n'/'%0A'}"
+        RESULT_TESTS="${RESULT_TESTS//$'\r'/'%0D'}"
+        
+        echo "::set-output name=ErrTest::$ERRORS_TEST"
+        echo "::set-output name=ResultTest::$RESULT_TESTS"
     
-    - name: Send output
+    - name: Send Build Result
       uses: fjogeleit/http-request-action@v1
       with:
         url: "https://pocstatic-api.herokuapp.com/StaticCode/build"
         method: "POST"
         data: '{ "errors": "${{ steps.build_step.outputs.ErrBuild }}", "warnings": "${{ steps.build_step.outputs.WarnBuild }}" }'
+    
+    - name: Send Test Result
+      uses: fjogeleit/http-request-action@v1
+      with:
+        url: "https://pocstatic-api.herokuapp.com/StaticCode/Test"
+        method: "POST"
+        data: '{ "errors": "${{ steps.test_step.outputs.ErrTest }}", "result": "${{ steps.test_step.outputs.ResultTest }}" }'
