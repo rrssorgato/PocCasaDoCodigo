@@ -38,8 +38,7 @@ jobs:
       id: build_step
     
     - name: Test
-      run: dotnet test --no-build 2> test_erros.txt | egrep 'Failed!|Passed!' > teste_result.txt
-      id: test_step
+      run: dotnet test --no-build 2> test_erros.txt | egrep 'Failed!|Passed!' > test_result.txt
       
     - name: Get Output Test
       run: |
@@ -48,13 +47,14 @@ jobs:
         ERRORS_TEST="${ERRORS_TEST//$'\n'/'%0A'}"
         ERRORS_TEST="${ERRORS_TEST//$'\r'/'%0D'}"
         
-        RESULT_TESTS=$(cat teste_result.txt)
+        RESULT_TESTS=$(cat test_result.txt)
         RESULT_TESTS="${RESULT_TESTS//'%'/'%25'}"
         RESULT_TESTS="${RESULT_TESTS//$'\n'/'%0A'}"
         RESULT_TESTS="${RESULT_TESTS//$'\r'/'%0D'}"
         
         echo "::set-output name=ErrTest::$ERRORS_TEST"
         echo "::set-output name=ResultTest::$RESULT_TESTS"
+      id: test_step  
     
     - name: Send Build Result
       uses: fjogeleit/http-request-action@v1
