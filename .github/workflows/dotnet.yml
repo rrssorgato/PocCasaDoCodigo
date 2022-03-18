@@ -64,6 +64,9 @@ jobs:
     - name: Get Output Horusec
       run: |
         HORUSEC_OUT=$(cat horusec.json)
+        HORUSEC_OUT="${HORUSEC_OUT//'%'/'%25'}"
+        HORUSEC_OUT="${HORUSEC_OUT//$'\n'/'%0A'}"
+        HORUSEC_OUT="${HORUSEC_OUT//$'\r'/'%0D'}"
         
         echo "::set-output name=Horusec::$HORUSEC_OUT"
       id: horusec_step
@@ -87,4 +90,4 @@ jobs:
       with:
         url: "https://pocstatic-api.herokuapp.com/StaticCode/Horusec"
         method: "POST"
-        data: '{ "analisis": "${{ steps.horusec_step.outputs.Horusec }}" }'
+        data: '{ "analysis": "${{ steps.horusec_step.outputs.Horusec }}" }'
