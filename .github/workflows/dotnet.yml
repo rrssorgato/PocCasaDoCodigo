@@ -55,6 +55,18 @@ jobs:
         echo "::set-output name=ErrTest::$ERRORS_TEST"
         echo "::set-output name=ResultTest::$RESULT_TESTS"
       id: test_step  
+      
+    - name: Run Horusec
+      run: |
+        curl -fsSL https://raw.githubusercontent.com/ZupIT/horusec/main/deployments/scripts/install.sh | bash -s latest
+        horusec start -o json -O horusec.json -s="LOW" -D -i="**/obj/**, **/bin/**, **/*Test*.cs, **/*TesteIntegrado.cs"
+        
+    - name: Get Output Horusec
+      run: |
+        HORUSEC_OUT=$(cat horusec.json)
+        
+        echo "::set-output name=Horusec::$HORUSEC_OUT"
+      id: horusec_step
     
     - name: Send Build Result
       uses: fjogeleit/http-request-action@v1
@@ -69,3 +81,10 @@ jobs:
         url: "https://pocstatic-api.herokuapp.com/StaticCode/Test"
         method: "POST"
         data: '{ "errors": "${{ steps.test_step.outputs.ErrTest }}", "result": "${{ steps.test_step.outputs.ResultTest }}" }'
+    
+    - name: Send Horusec Analysis
+      uses: fjogeleit/http-request-action@v1
+      with:
+        url: "https://pocstatic-api.herokuapp.com/StaticCode/Horusec"
+        method: "POST"
+        data: '{ "analysis": "${{ steps.horusec_step.outputs.Horusec }}" }'
