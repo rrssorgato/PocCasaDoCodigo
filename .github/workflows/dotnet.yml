@@ -48,7 +48,7 @@ jobs:
         ERRORS_TEST="${ERRORS_TEST//$'\n'/'%0A'}"
         ERRORS_TEST="${ERRORS_TEST//$'\r'/'%0D'}"
         
-        RESULT_TESTS=$(cat test_erros.txt)
+        RESULT_TESTS=$(cat teste_result.txt)
         RESULT_TESTS="${RESULT_TESTS//'%'/'%25'}"
         RESULT_TESTS="${RESULT_TESTS//$'\n'/'%0A'}"
         RESULT_TESTS="${RESULT_TESTS//$'\r'/'%0D'}"
