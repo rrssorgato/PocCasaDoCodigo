@@ -30,7 +30,7 @@ jobs:
         
         WARNINGS_BUILD=$(cat warnings_build.txt)
         WARNINGS_BUILD="${WARNINGS_BUILD//'%'/'%25'}"
-        WARNINGS_BUILD="${WARNINGS_BUILD//$'\n'/'%0A'}"
+        WARNINGS_BUILD="${WARNINGS_BUILD//$'\n'/'|||||'}"
         WARNINGS_BUILD="${WARNINGS_BUILD//$'\r'/'%0D'}"
   
         echo "::set-output name=ErrBuild::$ERROS_BUILD"
