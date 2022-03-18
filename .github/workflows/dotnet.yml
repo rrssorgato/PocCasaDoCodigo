@@ -98,4 +98,23 @@ jobs:
         url: "https://pocstatic-api.herokuapp.com/StaticCode/Horusec"
         method: "POST"
         data: '${{ steps.horusec_step.outputs.Horusec }}'
+        
+  SonarCloud:
+    
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v2
+    - name: Run SonarCloud Here
+      run: echo "Hello World"
+  
+  Finish:
+    needs: [Build-and-Test, Horusec, SonarCloud]
+
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v2
+    - name: Run Finalization Here
+      run: echo "Hello World"
     
