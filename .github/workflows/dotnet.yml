@@ -59,7 +59,7 @@ jobs:
     - name: Run Horusec
       run: |
         curl -fsSL https://raw.githubusercontent.com/ZupIT/horusec/main/deployments/scripts/install.sh | bash -s latest
-        horusec start -o json -O horusec.json -s="LOW" -D -i="**/obj/**, **/bin/**, **/*Test*.cs, **/*TesteIntegrado.cs"
+        horusec start -p="./" -o json -O horusec.json -s="LOW" -D -i="**/obj/**, **/bin/**, **/*Test*.cs, **/*TesteIntegrado.cs" -e="true"
         
     - name: Get Output Horusec
       run: |
