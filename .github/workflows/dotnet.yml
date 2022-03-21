@@ -114,9 +114,15 @@ jobs:
         data: '${{ steps.horusec_step.outputs.Horusec }}'
         
   SonarCloud:
-    
     runs-on: ubuntu-latest
-    
+    container:
+      image: sonarqube:8.9-community
+      env: 
+        sonar.forceAuthentication: false
+      ports:
+        - 9000
+        - 9092
+        
     steps:
     - uses: actions/checkout@v2
     - name: Run SonarCloud Here
