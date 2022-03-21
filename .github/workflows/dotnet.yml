@@ -71,6 +71,20 @@ jobs:
         method: "POST"
         data: '{ "errors": "${{ steps.test_step.outputs.ErrTest }}", "result": "${{ steps.test_step.outputs.ResultTest }}" }'
 
+  sonarQube:
+    runs-on: ubuntu-latest
+    name: SonarQube
+    steps:
+    - uses: actions/checkout@master
+    - name: SonarQube Scan
+      uses: kitabisa/sonarqube-action@v1.1.0
+      with:
+        host: ${{ secrets.SONARQUBE_HOST }}
+        login: ${{ secrets.SONARQUBE_TOKEN }}
+        projectBaseDir: "/path/to/my-custom-project"
+        projectKey: "xxxxxxxxxxxxxxxxx"
+        projectName: "PocCasaDoCodigo"
+        projectVersion: "v0.0.1"
         
   Horusec:
   
