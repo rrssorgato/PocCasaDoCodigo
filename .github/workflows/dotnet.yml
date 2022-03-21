@@ -98,7 +98,7 @@ jobs:
         method: "POST"
         data: '${{ steps.horusec_step.outputs.Horusec }}'
         
-  SonarCloud:
+  SonarQube:
     runs-on: ubuntu-latest
 
     steps:
@@ -116,15 +116,27 @@ jobs:
         dotnet sonarscanner begin /d:sonar.host.url="http://c5a9-201-87-200-51.ngrok.io" /n:"PocCasaGit" /k:"casagit"
         dotnet build
         dotnet sonarscanner end
-        
-    - name: Get Out
+         
+    - name: Get Output Sonarqube
       run: |
-        echo $(cat /home/runner/work/PocCasaDoCodigo/PocCasaDoCodigo/.sonarqube/out/1/Issues.json)
-        echo $(cat /home/runner/work/PocCasaDoCodigo/PocCasaDoCodigo/.sonarqube/out/0/Issues.json)
+        SONAR_OUT=$(cat /home/runner/work/PocCasaDoCodigo/PocCasaDoCodigo/.sonarqube/out/1/Issues.json)
+        SONAR_OUT="${SONAR_OUT//'%'/'%25'}"
+        SONAR_OUT="${SONAR_OUT//$'\n'/'%0A'}"
+        SONAR_OUT="${SONAR_OUT//$'\r'/'%0D'}"
+        
+        echo "::set-output name=Sonar::$SONAR_OUT"
+      id: sonar_step
+      
+    - name: Send Sonarqube Analysis
+      uses: fjogeleit/http-request-action@v1
+      with:
+        url: "https://pocstatic-api.herokuapp.com/StaticCode/Sonar"
+        method: "POST"
+        data: '${{ steps.sonar_step.outputs.Sonar }}'
    
     
   Finish:
-    needs: [Build-and-Test, Horusec, SonarCloud]
+    needs: [Build-and-Test, Horusec, SonarQube]
 
     runs-on: ubuntu-latest
     
