@@ -120,8 +120,8 @@ jobs:
       env: 
         sonar.forceAuthentication: false
       ports:
-        - 9000
-        - 9092
+        - 9000:9000
+        - 9092:9092
     steps:
     - uses: actions/checkout@v2
         
