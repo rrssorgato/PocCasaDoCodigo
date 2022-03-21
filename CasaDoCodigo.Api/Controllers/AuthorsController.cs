@@ -10,7 +10,7 @@ namespace CasaDoCodigo.Api.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> Add(AuthorRequest request)
         {
-            var clientSecret = "123erro";
+            var clientSecret = "123_erro";
             // Sua implementação aqui
             // ControllerBase.Created em caso de sucesso
             // ControllerBase.BadRequest em caso de falha

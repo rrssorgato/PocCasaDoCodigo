@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Rodrigo\\Downloads\\Development\\C#\\dotnet\\PocCasaDoCodigo\\CasaDoCodigo.Tests\\CasaDoCodigo.Tests.csproj": {}
+    "C:\\Users\\isac-\\Documents\\estudo_dev\\flutter\\PocCasaDoCodigo\\CasaDoCodigo.Tests\\CasaDoCodigo.Tests.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Rodrigo\\Downloads\\Development\\C#\\dotnet\\PocCasaDoCodigo\\CasaDoCodigo.Tests\\CasaDoCodigo.Tests.csproj": {
+    "C:\\Users\\isac-\\Documents\\estudo_dev\\flutter\\PocCasaDoCodigo\\CasaDoCodigo.Tests\\CasaDoCodigo.Tests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Rodrigo\\Downloads\\Development\\C#\\dotnet\\PocCasaDoCodigo\\CasaDoCodigo.Tests\\CasaDoCodigo.Tests.csproj",
+        "projectUniqueName": "C:\\Users\\isac-\\Documents\\estudo_dev\\flutter\\PocCasaDoCodigo\\CasaDoCodigo.Tests\\CasaDoCodigo.Tests.csproj",
         "projectName": "CasaDoCodigo.Tests",
-        "projectPath": "C:\\Users\\Rodrigo\\Downloads\\Development\\C#\\dotnet\\PocCasaDoCodigo\\CasaDoCodigo.Tests\\CasaDoCodigo.Tests.csproj",
-        "packagesPath": "C:\\Users\\Rodrigo\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Rodrigo\\Downloads\\Development\\C#\\dotnet\\PocCasaDoCodigo\\CasaDoCodigo.Tests\\obj\\",
+        "projectPath": "C:\\Users\\isac-\\Documents\\estudo_dev\\flutter\\PocCasaDoCodigo\\CasaDoCodigo.Tests\\CasaDoCodigo.Tests.csproj",
+        "packagesPath": "C:\\Users\\isac-\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\isac-\\Documents\\estudo_dev\\flutter\\PocCasaDoCodigo\\CasaDoCodigo.Tests\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Rodrigo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\isac-\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -82,7 +82,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     }
