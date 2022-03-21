@@ -113,13 +113,13 @@ jobs:
       
     - name: Run SonarCloud Here
       run: |
-        dotnet sonarscanner begin /d:sonar.host.url="http://c5a9-201-87-200-51.ngrok.io" /n:"${{ github.actor }}-${{ github.repository }}" /k:"${{ github.repository }}"
+        dotnet sonarscanner begin /d:sonar.host.url="http://c5a9-201-87-200-51.ngrok.io" /n:"${{ github.actor }}-${{ github.event.repository.name }}" /k:"${{ github.event.repository.name }}"
         dotnet build
         dotnet sonarscanner end
          
     - name: Get Output Sonarqube
       run: |
-        SONAR_OUT=$(cat /home/runner/work/${{ github.repository }}/${{ github.repository }}/.sonarqube/out/1/Issues.json)
+        SONAR_OUT=$(cat /home/runner/work/${{ github.event.repository.name }}/${{ github.event.repository.name }}/.sonarqube/out/1/Issues.json)
         SONAR_OUT="${SONAR_OUT//'%'/'%25'}"
         SONAR_OUT="${SONAR_OUT//$'\n'/'%0A'}"
         SONAR_OUT="${SONAR_OUT//$'\r'/'%0D'}"
