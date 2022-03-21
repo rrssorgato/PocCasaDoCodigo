@@ -122,6 +122,8 @@ jobs:
       ports:
         - 9000
         - 9092
+    steps:
+    - uses: actions/checkout@v2
         
   Run-Scan:  
     runs-on: ubuntu-latest
