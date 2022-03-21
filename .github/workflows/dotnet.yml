@@ -132,7 +132,7 @@ jobs:
       with:
         url: "https://pocstatic-api.herokuapp.com/StaticCode/Sonar"
         method: "POST"
-        data: '"analysis": ${{ steps.sonar_step.outputs.Sonar }}, "dirpath": "/home/runner/work/${{ github.event.repository.name }}/${{ github.event.repository.name }}/"'
+        data: '{ "analysis": ${{ steps.sonar_step.outputs.Sonar }}, "dirpath": "/home/runner/work/${{ github.event.repository.name }}/${{ github.event.repository.name }}/"} '
    
     
   Finish:
