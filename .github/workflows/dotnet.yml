@@ -133,7 +133,7 @@ jobs:
         dotnet sonarscanner end
         
     - name: Get Out
-      run: echo $(cat .sonarqube/out/Issues.json)
+      run: echo $(cat ./.sonarqube/out/Issues.json)
    
     
   Finish:
