@@ -123,6 +123,9 @@ jobs:
         - 9000
         - 9092
         
+  Run-Scan:  
+    runs-on: ubuntu-latest
+    needs: SonarCloud
     steps:
     - uses: actions/checkout@v2
    
@@ -143,7 +146,7 @@ jobs:
     - name: Get Out
       run: echo $(cat .sonarqube/out/Issues.json)
   Finish:
-    needs: [Build-and-Test, Horusec, SonarCloud]
+    needs: [Build-and-Test, Horusec, Run-Scan]
 
     runs-on: ubuntu-latest
     
