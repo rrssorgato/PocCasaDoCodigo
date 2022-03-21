@@ -118,7 +118,9 @@ jobs:
         dotnet sonarscanner end
         
     - name: Get Out
-      run: echo $(ls /home/runner/work/PocCasaDoCodigo/PocCasaDoCodigo/.sonarqube/out/)
+      run: |
+        echo $(cat /home/runner/work/PocCasaDoCodigo/PocCasaDoCodigo/.sonarqube/out/1/Issues.json)
+        echo $(cat /home/runner/work/PocCasaDoCodigo/PocCasaDoCodigo/.sonarqube/out/0/Issues.json)
    
     
   Finish:
