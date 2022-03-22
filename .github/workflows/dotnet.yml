@@ -113,7 +113,7 @@ jobs:
       
     - name: Run SonarCloud Here
       run: |
-        dotnet sonarscanner begin /d:sonar.host.url="http://c5a9-201-87-200-51.ngrok.io" /n:"${{ github.actor }}-${{ github.event.repository.name }}" /k:"${{ github.event.repository.name }}"
+        dotnet sonarscanner begin /d:sonar.host.url="http://a058-201-87-200-51.ngrok.io" /n:"${{ github.actor }}-${{ github.event.repository.name }}" /k:"${{ github.event.repository.name }}"
         dotnet build
         dotnet sonarscanner end
          
